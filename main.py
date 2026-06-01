@@ -3,6 +3,8 @@ import random
 import sys
 import pygame
 
+# DISCLAIMER , most of the comments has been added by Ai as my code didnt have much comments and i told the Ai to explain the code , also remove dead commented code
+
 # AUTONOMOUS DRONE DELIVERY.
 # a drone has to fly from the depot to a delivery house across a city grid.
 # there are buildings / no-fly zones it must avoid. it plans the shortest safe
