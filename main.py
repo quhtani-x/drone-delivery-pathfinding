@@ -6,7 +6,7 @@ import pygame
 # AUTONOMOUS DRONE DELIVERY.
 # a drone has to fly from the depot to a delivery house across a city grid.
 # there are buildings / no-fly zones it must avoid. it plans the shortest safe
-# route with A* and then flies it. click anywhere to drop a new delivery point
+# route with A* and then flies to it it. to test , click anywhere to drop a new delivery point
 # and watch it replan live.
 
 COLS, ROWS = 40, 26
@@ -24,7 +24,7 @@ grid = [[0] * COLS for _ in range(ROWS)]
 
 
 def make_buildings():
-    # scatter some rectangular "buildings" the drone cant fly through
+    # put some rectangular "buildings" the drone cant fly through
     for _ in range(18):
         bx = random.randint(2, COLS - 6)
         by = random.randint(2, ROWS - 5)
@@ -57,7 +57,7 @@ def heuristic(a, b):
 
 
 def astar(start, goal):
-    # classic A*. returns the path as a list of cells, or [] if blocked.
+    
     frontier = [(0, start)]
     came = {start: None}
     cost = {start: 0}
@@ -73,7 +73,7 @@ def astar(start, goal):
                 came[nxt] = cur
     if goal not in came:
         return []
-    # walk the came-from links back to the start
+    
     path = []
     node = goal
     while node:
@@ -128,7 +128,6 @@ while running:
         pygame.draw.circle(screen, (240, 240, 60), (px, py), 8)
         pygame.draw.circle(screen, (240, 240, 60), (px, py), 14, 1)
 
-    # HUD
     status = f"route: {len(path)} cells" if path else "NO SAFE ROUTE - blocked!"
     screen.blit(font.render(status, True, (220, 220, 220)), (12, ROWS * CELL + 12))
     screen.blit(font.render("click to set a new delivery point", True, (150, 160, 180)),
